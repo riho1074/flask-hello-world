@@ -49,20 +49,18 @@ def inserting():
 def selecting():
     conn = psycopg2.connect("postgres://database_example_lff5_user:64t2vX6bUfBZ0f6XMZZTZzkyzYjgn0F5@dpg-co5en5fsc6pc7385cnvg-a/database_example_lff5")
     cur = conn.cursor()
-    cur.execute('''
-        SELECT * FROM Basketball;
-        ''')
-        records = cur.fetchall()
-        conn.close()
-        response_string=""
-        response_string+="<table>"
-        for player in records:
-            response_string+="<tr>"
-            for info in player:
-                response_string+="<td>{}</td>".format(info)
-            response_string+="</tr>"
-        response_string+="<table>"
-        return response_string
+    cur.execute('''SELECT * FROM Basketball;''')
+    records = cur.fetchall()
+    conn.close()
+    response_string=""
+    response_string+="<table>"
+    for player in records:
+        response_string+="<tr>"
+        for info in player:
+            response_string+="<td>{}</td>".format(info)
+        response_string+="</tr>"
+    response_string+="<table>"
+    return response_string
 
 @app.route('/dp_drop')
 def dropping():
